@@ -1,0 +1,1629 @@
+/* =========================================
+   90s GEN-Z BIRTHDAY WEBSITE
+========================================= */
+
+:root {
+  --ink: #181512;
+  --paper: rgba(244, 238, 222, 0.96);
+  --paper-soft: rgba(236, 228, 209, 0.94);
+  --white: #f4f0e7;
+  --shadow: rgba(0, 0, 0, 0.42);
+
+  --hand: "Shadows Into Light", cursive;
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --display: "Playfair Display", Georgia, serif;
+  --mono: "DM Mono", monospace;
+}
+
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #111;
+  color: var(--white);
+}
+
+body.page {
+  position: relative;
+  isolation: isolate;
+}
+
+body.page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -5;
+  background: #111;
+}
+
+
+/* =========================================
+   AESTHETIC BACKGROUNDS
+========================================= */
+
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -4;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  transform: scale(1.03);
+
+  filter:
+    saturate(0.72)
+    contrast(1.03)
+    brightness(0.66);
+}
+
+
+/*
+=============================================
+ADD YOUR BACKGROUND IMAGE URLS HERE
+=============================================
+*/
+
+
+.page-one .bg-layer {
+ background-image: url(https://i.pinimg.com/736x/fa/43/14/fa4314a2370e45edb2f02fed2b3ad45c.jpg);
+}
+
+
+.page-password .bg-layer {
+  background-image: url(https://www.creativefabrica.com/wp-content/uploads/2022/05/17/pastel-aesthetic-background-Graphics-30684243-1.jpg);
+}
+
+
+.page-two .bg-layer {
+  background-image: url(https://i.pinimg.com/originals/cd/1d/74/cd1d745bb6db88372ecebcf4ae22c029.png);
+}
+
+
+.page-three .bg-layer {
+  background-image: url(https://static.vecteezy.com/system/resources/previews/016/291/292/original/aesthetic-background-frame-with-pastel-color-blob-and-leaves-abstract-template-vector.jpg);
+}
+
+
+.page-four .bg-layer {
+  background-image: url(https://wallpapercave.com/wp/wp8909426.jpg);
+}
+
+
+/* =========================================
+   FILM GRAIN
+========================================= */
+
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 10;
+  pointer-events: none;
+
+  opacity: 0.09;
+
+  background-image:
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(255,255,255,.8) 0 .7px,
+      transparent .9px
+    ),
+    radial-gradient(
+      circle at 70% 65%,
+      rgba(255,255,255,.6) 0 .7px,
+      transparent .9px
+    );
+
+  background-size:
+    19px 19px,
+    23px 23px;
+
+  animation: grainShift .14s steps(2) infinite;
+}
+
+
+/* =========================================
+   VHS SCANLINES
+========================================= */
+
+.scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+
+  opacity: .08;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 3px,
+      rgba(255,255,255,.28) 4px
+    );
+}
+
+
+/* =========================================
+   DARK VIGNETTE
+========================================= */
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at center,
+      transparent 34%,
+      rgba(0,0,0,.52) 100%
+    );
+}
+
+
+/* =========================================
+   PAGE FADE
+========================================= */
+
+.page {
+  opacity: 0;
+  transition: opacity .7s ease;
+}
+
+.page.is-loaded {
+  opacity: 1;
+}
+
+
+/* =========================================
+   LINKS
+========================================= */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+
+/* =========================================
+   RETRO BUTTON
+========================================= */
+
+.retro-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+
+  padding: 13px 22px;
+
+  border: 1px solid rgba(244,240,231,.62);
+
+  background: rgba(15,13,11,.34);
+
+  color: var(--white);
+
+  text-transform: uppercase;
+  letter-spacing: .18em;
+
+  font-family: var(--mono);
+  font-size: 11px;
+
+  backdrop-filter: blur(6px);
+
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.22);
+
+  transition:
+    transform .3s ease,
+    background .3s ease,
+    letter-spacing .3s ease;
+}
+
+.retro-button i {
+  font-style: normal;
+  font-size: 15px;
+}
+
+.retro-button:hover {
+  transform: translateY(-4px);
+
+  background:
+    rgba(15,13,11,.5);
+
+  letter-spacing: .24em;
+}
+
+.retro-button.small {
+  border-color:
+    rgba(24,21,18,.38);
+
+  color:
+    var(--ink);
+
+  background:
+    rgba(244,238,222,.54);
+}
+
+
+/* =========================================
+   PAGE 1
+========================================= */
+
+.landing {
+  min-height: 100vh;
+
+  display: grid;
+  place-items: center;
+
+  padding: 48px 22px;
+
+  position: relative;
+}
+
+.tiny-top {
+  position: absolute;
+
+  top: 26px;
+  left: 28px;
+
+  font-family: var(--mono);
+
+  text-transform: uppercase;
+
+  font-size: 9px;
+
+  letter-spacing: .22em;
+
+  opacity: .68;
+}
+
+.corner-note {
+  position: absolute;
+
+  right: 28px;
+  bottom: 28px;
+
+  font-family: var(--mono);
+
+  text-transform: uppercase;
+
+  font-size: 9px;
+
+  letter-spacing: .22em;
+
+  opacity: .55;
+}
+
+.landing-copy {
+  width: min(760px,94vw);
+
+  text-align: center;
+}
+
+.eyebrow {
+  font-family: var(--hand);
+
+  font-size:
+    clamp(19px,2.2vw,28px);
+
+  margin-bottom: 8px;
+}
+
+.landing h1 {
+  margin: 0;
+
+  font-family: var(--serif);
+
+  font-size:
+    clamp(64px,12vw,160px);
+
+  line-height: .78;
+
+  font-weight: 500;
+
+  letter-spacing: -.045em;
+
+  text-shadow:
+    0 12px 36px rgba(0,0,0,.35);
+}
+
+.landing h1 span {
+  font-family: var(--display);
+
+  font-style: italic;
+
+  font-weight: 400;
+}
+
+.micro-copy {
+  margin: 32px 0 24px;
+
+  font-family: var(--mono);
+
+  font-size: 10px;
+
+  letter-spacing: .22em;
+
+  text-transform: uppercase;
+
+  opacity: .66;
+}
+
+
+/* =========================================
+   PASSWORD PAGE
+========================================= */
+
+.password-wrap {
+  min-height: 100vh;
+
+  display: grid;
+  place-items: center;
+
+  padding: 28px;
+
+  position: relative;
+}
+
+.password-card {
+  width: min(520px,92vw);
+
+  padding: 46px 38px 42px;
+
+  position: relative;
+
+  text-align: center;
+
+  color: var(--ink);
+
+  background:
+    var(--paper-soft);
+
+  box-shadow:
+    0 28px 80px var(--shadow);
+
+  transform:
+    rotate(-.7deg);
+}
+
+.card-star {
+  position: absolute;
+
+  top: 14px;
+  right: 19px;
+
+  font-size: 20px;
+}
+
+.password-script {
+  font-family:
+    var(--hand);
+
+  font-size: 25px;
+}
+
+.password-card h1 {
+  margin: 5px 0 4px;
+
+  font-family:
+    var(--serif);
+
+  font-size:
+    clamp(37px,7vw,58px);
+
+  font-weight: 500;
+
+  line-height: .95;
+}
+
+.password-card p {
+  margin: 0 0 26px;
+
+  font-family:
+    var(--mono);
+
+  font-size: 9px;
+
+  text-transform: uppercase;
+
+  letter-spacing: .15em;
+
+  opacity: .68;
+}
+
+#passwordForm {
+  display: grid;
+  gap: 12px;
+}
+
+#passwordInput {
+  width: 100%;
+
+  padding:
+    15px 14px;
+
+  border:
+    1px solid rgba(24,21,18,.3);
+
+  outline: none;
+
+  background:
+    rgba(255,255,255,.27);
+
+  color:
+    var(--ink);
+
+  text-align:
+    center;
+
+  letter-spacing:
+    .45em;
+
+  font-size:
+    17px;
+}
+
+#passwordInput:focus {
+  border-color:
+    rgba(24,21,18,.72);
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(24,21,18,.15);
+}
+
+.password-message {
+  min-height: 18px;
+
+  margin-top:
+    16px;
+
+  font-family:
+    var(--hand);
+
+  font-size:
+    18px;
+}
+
+.password-message.error {
+  color: #563c31;
+}
+
+.tiny-back {
+  position: absolute;
+
+  bottom: 26px;
+  left: 28px;
+
+  font-family:
+    var(--mono);
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    .15em;
+
+  font-size:
+    9px;
+
+  opacity:
+    .63;
+}
+
+.shake {
+  animation:
+    shake .42s ease;
+}
+
+
+/* =========================================
+   PAGE 2
+========================================= */
+
+.birthday-collage {
+  min-height: 100vh;
+
+  position: relative;
+
+  padding:
+    84px 7vw 100px;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+}
+
+.archive-stamp,
+.date-label {
+  position: absolute;
+
+  z-index: 3;
+
+  font-family:
+    var(--mono);
+
+  text-transform:
+    uppercase;
+
+  font-size:
+    9px;
+
+  letter-spacing:
+    .22em;
+
+  opacity:
+    .62;
+}
+
+.archive-stamp {
+  top: 28px;
+  left: 30px;
+
+  border:
+    1px solid rgba(244,240,231,.48);
+
+  padding:
+    7px 9px;
+}
+
+.date-label {
+  top: 30px;
+  right: 30px;
+}
+
+.photo-frame {
+  position:
+    absolute;
+
+  width:
+    min(23vw,250px);
+
+  padding:
+    10px 10px 24px;
+
+  background:
+    #eee8da;
+
+  color:
+    var(--ink);
+
+  box-shadow:
+    0 20px 45px rgba(0,0,0,.4);
+
+  transition:
+    transform .3s ease;
+
+  z-index:
+    2;
+}
+
+.photo-frame img {
+  width: 100%;
+
+  aspect-ratio:
+    4 / 5;
+
+  object-fit:
+    cover;
+
+  display:
+    block;
+}
+
+.photo-frame figcaption {
+  margin-top:
+    7px;
+
+  font-family:
+    var(--hand);
+
+  font-size:
+    16px;
+}
+
+.photo-1 {
+  left: 7vw;
+  top: 17vh;
+
+  transform:
+    rotate(-6deg);
+}
+
+.photo-2 {
+  left: 7vw;
+  bottom: 13vh;
+
+  transform:
+    rotate(4deg);
+}
+
+.photo-3 {
+  right: 7vw;
+  top: 17vh;
+
+  transform:
+    rotate(5deg);
+}
+
+.photo-4 {
+  right: 7vw;
+  bottom: 13vh;
+
+  transform:
+    rotate(-4deg);
+}
+
+.birthday-center {
+  width:
+    min(670px,70vw);
+
+  text-align:
+    center;
+
+  z-index:
+    1;
+}
+
+.center-top,
+.center-bottom {
+  font-family:
+    var(--mono);
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    .18em;
+
+  font-size:
+    9px;
+
+  opacity:
+    .68;
+}
+
+.birthday-center h1 {
+  margin:
+    12px 0 11px;
+
+  line-height:
+    .7;
+
+  transform:
+    rotate(-2deg);
+}
+
+.birthday-center h1 span {
+  display:
+    block;
+
+  font-family:
+    var(--serif);
+
+  font-size:
+    clamp(50px,9vw,118px);
+
+  font-weight:
+    500;
+}
+
+.birthday-center h1 strong {
+  display:
+    block;
+
+  margin-top:
+    6px;
+
+  font-family:
+    var(--display);
+
+  font-style:
+    italic;
+
+  font-size:
+    clamp(56px,11vw,145px);
+
+  font-weight:
+    500;
+
+  letter-spacing:
+    -.05em;
+}
+
+.page-next {
+  position:
+    absolute;
+
+  bottom:
+    30px;
+
+  left:
+    50%;
+
+  transform:
+    translateX(-50%);
+}
+
+.page-next:hover {
+  transform:
+    translateX(-50%)
+    translateY(-4px);
+}
+
+
+/* =========================================
+   PAGE 3
+   90s HANDWRITTEN LETTER
+========================================= */
+
+.letter-scene {
+  min-height:
+    100vh;
+
+  position:
+    relative;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  padding:
+    100px 40px 120px;
+}
+
+
+.letter-wrap {
+  width:
+    min(900px, 78vw);
+
+  position:
+    relative;
+
+  margin-left:
+    180px;
+}
+
+
+/* =========================================
+   LETTER PAPER
+========================================= */
+
+.letter-paper {
+  position:
+    relative;
+
+  width:
+    100%;
+
+  min-height:
+    620px;
+
+  padding:
+    86px 10% 72px;
+
+  background:
+    linear-gradient(
+      rgba(246,240,221,.97),
+      rgba(237,230,209,.97)
+    );
+
+  color:
+    var(--ink);
+
+  box-shadow:
+    0 30px 75px
+    rgba(0,0,0,.45);
+
+  transform:
+    rotate(.65deg);
+
+  overflow:
+    visible;
+}
+
+
+/* =========================================
+   PAPER LINES
+========================================= */
+
+.letter-paper::before {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  opacity:
+    .2;
+
+  pointer-events:
+    none;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 31px,
+      rgba(48,64,77,.18) 32px
+    );
+}
+
+
+/* =========================================
+   LETTER META
+========================================= */
+
+.letter-meta {
+  position:
+    relative;
+
+  font-family:
+    var(--mono);
+
+  font-size:
+    9px;
+
+  letter-spacing:
+    .2em;
+
+  opacity:
+    .52;
+}
+
+
+/* =========================================
+   LETTER HEADING
+========================================= */
+
+.letter-paper h1 {
+  position:
+    relative;
+
+  margin:
+    23px 0 22px;
+
+  font-family:
+    var(--serif);
+
+  font-style:
+    italic;
+
+  font-weight:
+    500;
+
+  font-size:
+    clamp(42px,7vw,70px);
+
+  line-height:
+    .9;
+
+  max-width:
+    72%;
+}
+
+
+/* =========================================
+   HANDWRITTEN CONTENT
+========================================= */
+
+.letter-content {
+  position:
+    relative;
+
+  max-width:
+    84%;
+
+  font-family:
+    var(--hand);
+
+  font-size:
+    clamp(22px,2.5vw,31px);
+
+  line-height:
+    1.45;
+}
+
+.letter-content p {
+  margin:
+    0 0 16px;
+}
+
+
+/* =========================================
+   LETTER SIGNATURE
+========================================= */
+
+.letter-sign {
+  position:
+    relative;
+
+  margin-top:
+    26px;
+
+  font-family:
+    var(--hand);
+
+  font-size:
+    36px;
+}
+
+
+/* =========================================
+   PAGE 3 PHOTO
+   COMPLETELY LEFT OF LETTER
+   NEVER OVER THE TEXT
+========================================= */
+
+.letter-photo {
+  position:
+    absolute;
+
+  /*
+     Width of the vintage photo
+  */
+  width:
+    210px;
+
+  /*
+     LEFT SIDE OF LETTER
+  */
+  left:
+    -245px;
+
+  /*
+     ALIGNED NEAR THE TOP
+  */
+  top:
+    15px;
+
+  padding:
+    9px 9px 24px;
+
+  background:
+    #eee8da;
+
+  color:
+    var(--ink);
+
+  box-shadow:
+    0 20px 38px
+    rgba(0,0,0,.42);
+
+  z-index:
+    10;
+
+  /*
+     CLEARLY TILTED TO LEFT
+  */
+  transform:
+    rotate(-11deg);
+
+  transform-origin:
+    center center;
+}
+
+
+/* =========================================
+   LETTER PHOTO IMAGE
+========================================= */
+
+.letter-photo img {
+  width:
+    100%;
+
+  aspect-ratio:
+    4 / 5;
+
+  object-fit:
+    cover;
+
+  display:
+    block;
+}
+
+
+/* =========================================
+   LETTER PHOTO CAPTION
+========================================= */
+
+.letter-photo figcaption {
+  margin-top:
+    7px;
+
+  font-family:
+    var(--hand);
+
+  font-size:
+    16px;
+
+  white-space:
+    nowrap;
+}
+
+
+/* =========================================
+   PAPER TAPE
+========================================= */
+
+.paper-tape {
+  position:
+    absolute;
+
+  width:
+    110px;
+
+  height:
+    24px;
+
+  background:
+    rgba(235,220,185,.68);
+
+  z-index:
+    5;
+}
+
+.tape-a {
+  right:
+    4%;
+
+  top:
+    -8px;
+
+  transform:
+    rotate(6deg);
+}
+
+.tape-b {
+  left:
+    11%;
+
+  bottom:
+    -9px;
+
+  transform:
+    rotate(-4deg);
+}
+
+
+/* =========================================
+   PAGE 3 NEXT BUTTON
+========================================= */
+
+.letter-next {
+  bottom:
+    30px;
+}
+
+
+/* =========================================
+   PAGE 4
+========================================= */
+
+.final-scene {
+  min-height:
+    100vh;
+
+  position:
+    relative;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  padding:
+    90px 22px 80px;
+}
+
+.final-topline,
+.final-footer {
+  position:
+    absolute;
+
+  font-family:
+    var(--mono);
+
+  text-transform:
+    uppercase;
+
+  font-size:
+    9px;
+
+  letter-spacing:
+    .22em;
+}
+
+.final-topline {
+  top:
+    28px;
+
+  left:
+    30px;
+
+  opacity:
+    .64;
+}
+
+.final-footer {
+  bottom:
+    25px;
+
+  right:
+    29px;
+
+  opacity:
+    .5;
+}
+
+.final-card {
+  width:
+    min(860px,92vw);
+
+  position:
+    relative;
+
+  padding:
+    62px clamp(28px,7vw,82px) 68px;
+
+  color:
+    var(--ink);
+
+  background:
+    rgba(243,236,218,.95);
+
+  box-shadow:
+    0 35px 85px
+    rgba(0,0,0,.48);
+
+  transform:
+    rotate(-.55deg);
+}
+
+.final-label {
+  font-family:
+    var(--mono);
+
+  letter-spacing:
+    .19em;
+
+  font-size:
+    9px;
+
+  opacity:
+    .5;
+}
+
+.final-card h1 {
+  margin:
+    14px 0 5px;
+
+  font-family:
+    var(--serif);
+
+  font-size:
+    clamp(58px,10vw,120px);
+
+  font-weight:
+    500;
+
+  line-height:
+    .83;
+
+  letter-spacing:
+    -.04em;
+}
+
+.final-script {
+  font-family:
+    var(--hand);
+
+  font-size:
+    clamp(21px,2.3vw,29px);
+
+  margin-bottom:
+    28px;
+}
+
+.final-content {
+  max-width:
+    720px;
+
+  font-family:
+    var(--hand);
+
+  font-size:
+    clamp(22px,2.5vw,31px);
+
+  line-height:
+    1.5;
+}
+
+.final-content p {
+  margin:
+    0 0 17px;
+}
+
+.final-scribble {
+  margin-top:
+    26px;
+
+  font-family:
+    var(--hand);
+
+  font-size:
+    24px;
+
+  opacity:
+    .82;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes grainShift {
+
+  0% {
+    transform:
+      translate(0,0);
+  }
+
+  25% {
+    transform:
+      translate(2%,-1%);
+  }
+
+  50% {
+    transform:
+      translate(-1%,2%);
+  }
+
+  75% {
+    transform:
+      translate(1%,1%);
+  }
+
+  100% {
+    transform:
+      translate(-2%,-1%);
+  }
+}
+
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform:
+      rotate(-.7deg)
+      translateX(0);
+  }
+
+  25% {
+    transform:
+      rotate(-.7deg)
+      translateX(-8px);
+  }
+
+  50% {
+    transform:
+      rotate(-.7deg)
+      translateX(8px);
+  }
+
+  75% {
+    transform:
+      rotate(-.7deg)
+      translateX(-5px);
+  }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+
+  .letter-wrap {
+    width:
+      min(850px, 76vw);
+
+    margin-left:
+      145px;
+  }
+
+  .letter-photo {
+    width:
+      180px;
+
+    left:
+      -205px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+  /* PAGE 1 */
+
+  .landing h1 {
+    font-size:
+      clamp(56px,18vw,105px);
+  }
+
+
+  .corner-note {
+    display:
+      none;
+  }
+
+
+  /* PASSWORD */
+
+  .password-card {
+    padding:
+      36px 22px 30px;
+  }
+
+
+  /* PAGE 2 */
+
+  .photo-frame {
+
+    width:
+      29vw;
+
+    min-width:
+      110px;
+
+    padding:
+      7px 7px 17px;
+  }
+
+
+  .photo-1 {
+    left:
+      4vw;
+
+    top:
+      15vh;
+  }
+
+
+  .photo-2 {
+    left:
+      4vw;
+
+    bottom:
+      17vh;
+  }
+
+
+  .photo-3 {
+    right:
+      4vw;
+
+    top:
+      15vh;
+  }
+
+
+  .photo-4 {
+    right:
+      4vw;
+
+    bottom:
+      17vh;
+  }
+
+
+  .birthday-center {
+    width:
+      60vw;
+  }
+
+
+  .birthday-center h1 span {
+    font-size:
+      clamp(34px,12vw,70px);
+  }
+
+
+  .birthday-center h1 strong {
+    font-size:
+      clamp(39px,14vw,82px);
+  }
+
+
+  /* =====================================
+     PAGE 3 MOBILE
+     PHOTO GOES ABOVE LETTER
+     SO IT CAN NEVER COVER TEXT
+  ===================================== */
+
+  .letter-scene {
+    padding:
+      150px 20px 120px;
+  }
+
+
+  .letter-wrap {
+
+    width:
+      92vw;
+
+    margin-left:
+      0;
+
+    margin-top:
+      30px;
+  }
+
+
+  .letter-paper {
+
+    min-height:
+      650px;
+
+    padding:
+      90px 8% 65px;
+  }
+
+
+  .letter-paper h1 {
+
+    max-width:
+      100%;
+
+    padding-left:
+      0;
+  }
+
+
+  .letter-content {
+
+    max-width:
+      100%;
+
+    font-size:
+      clamp(20px,6vw,27px);
+  }
+
+
+  /*
+    PHOTO IS NOW ABOVE THE LETTER
+    AND TO THE LEFT
+  */
+
+  .letter-photo {
+
+    width:
+      145px;
+
+    left:
+      5px;
+
+    top:
+      -120px;
+
+    transform:
+      rotate(-11deg);
+  }
+
+
+  .letter-photo figcaption {
+    font-size:
+      12px;
+  }
+
+
+  /* PAGE 4 */
+
+  .final-card {
+
+    padding:
+      48px 25px 55px;
+  }
+
+
+  .final-card h1 {
+
+    font-size:
+      clamp(45px,16vw,82px);
+  }
+
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
+
+@media (max-width: 450px) {
+
+  .letter-scene {
+    padding-top:
+      140px;
+  }
+
+
+  .letter-photo {
+
+    width:
+      125px;
+
+    left:
+      2px;
+
+    top:
+      -105px;
+
+    transform:
+      rotate(-11deg);
+  }
+
+
+  .letter-paper {
+
+    min-height:
+      600px;
+
+    padding:
+      75px 7% 50px;
+  }
+
+
+  .letter-paper h1 {
+    font-size:
+      40px;
+  }
+
+
+  .photo-frame {
+    min-width:
+      95px;
+  }
+
+
+  .photo-frame figcaption {
+    font-size:
+      10px;
+  }
+
+}
