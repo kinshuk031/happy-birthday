@@ -33,7 +33,7 @@
 
       /* PASSWORD */
 
-      if (input.value === "550255") {
+      if (input.value === "55055") {
 
         message.textContent =
           "ACCESS GRANTED ✦";
