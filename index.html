@@ -5,58 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A Little Something ✦</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Shadows+Into+Light&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #contentFrame {
+      width: 100vw;
+      height: 100vh;
+      border: 0;
+      display: block;
+    }
+
+    #bgMusic {
+      display: none;
+    }
+
+    #musicToggle {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 9999;
+
+      padding: 10px 15px;
+      border: 1px solid rgba(244,240,231,.55);
+      background: rgba(15,13,11,.45);
+      color: white;
+
+      font-family: monospace;
+      font-size: 10px;
+      letter-spacing: .14em;
+
+      cursor: pointer;
+      backdrop-filter: blur(7px);
+    }
+  </style>
 </head>
 
-<body class="page page-one">
+<body>
 
-  <!-- PUT YOUR PAGE 1 BACKGROUND IMAGE URL HERE IN style.css -->
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
 
-  <div class="bg-layer"></div>
-  <div class="grain"></div>
-  <div class="scanlines"></div>
-  <div class="vignette"></div>
+  <iframe
+    id="contentFrame"
+    src="home.html"
+    title="Birthday Website">
+  </iframe>
 
-  <main class="landing">
+  <button id="musicToggle">♫ TAP FOR MUSIC</button>
 
-    <div class="tiny-top">
-      ARCHIVE / 1997 / PRIVATE
-    </div>
+  <script>
+    const music = document.getElementById("bgMusic");
+    const button = document.getElementById("musicToggle");
 
-    <section class="landing-copy">
+    async function startMusic() {
+      try {
+        await music.play();
 
-      <div class="eyebrow">
-        a little something awaits...
-      </div>
+        button.textContent = "♫ MUSIC ON";
 
-      <h1>
-        Made<br>
-        <span>just for you</span>
-      </h1>
+      } catch (error) {
+        button.textContent = "♫ TAP FOR MUSIC";
+      }
+    }
 
-      <p class="micro-copy">
-        turn the page • keep the memory
-      </p>
+    button.addEventListener("click", startMusic);
 
-      <a class="retro-button" href="password.html">
-        <span>ENTER</span>
-        <i>✦</i>
-      </a>
+    window.startBirthdayMusic = startMusic;
 
-    </section>
+    window.addEventListener("message", (event) => {
 
-    <div class="corner-note">
-      press enter →
-    </div>
+      if (event.data === "START_MUSIC") {
+        startMusic();
+      }
 
-  </main>
-
-  <script src="script.js"></script>
+    });
+  </script>
 
 </body>
 </html>
