@@ -40,6 +40,10 @@
 
         message.classList.remove("error");
 
+        if (window.parent && window.parent !== window) {
+  window.parent.postMessage("START_MUSIC", "*");
+}
+
 
         setTimeout(() => {
 
